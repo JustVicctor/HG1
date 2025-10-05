@@ -1,0 +1,135 @@
+# Godot 4+ specific ignores
+.godot/
+.nomedia
+*.tmp
+
+# Godot-specific ignores
+.import/
+export.cfg
+export_credentials.cfg
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Mono-specific ignores
+.mono/
+data_*/
+mono_crash.*.json
+
+# Godot auto generated files
+*.gen.*
+.godot/
+
+# Ignore library files but not the gdextension file
+!Game/bin/*.gdextension
+Game/bin/linux/*
+Game/bin/macos/*
+Game/bin/windows/*
+Game/bin/android/*
+bin/*
+
+# Ignore custom.py
+custom.py
+
+# Ignore generated compile_commands.json
+compile_commands.json
+
+# Ignore files generated for documentation
+/src/gen
+
+# Binaries
+*.o
+*.os
+*.so
+*.obj
+*.bc
+*.pyc
+*.dblite
+*.pdb
+*.lib
+*.config
+*.creator
+*.creator.user
+*.files
+*.includes
+*.idb
+*.exp
+*.dll
+*.ilk
+
+# Other stuff
+*.log
+
+# VSCode
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+
+# Jetbrains
+.idea/
+
+# Cmake
+cmake-build*
+CMakeUserPresets.json
+
+# ====================== #
+# CMake Generated Files  #
+# ====================== #
+out/
+lib/
+*.sln
+*.vcxproj*
+*.vcxproj.filters
+*.cmake
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+*.dir/
+*.tlog/
+*.lastbuildstate
+*.suo
+*.user
+*.opensdf
+*.sdf
+*.VC.db
+*.VC.VC.opendb
+[Xx]64/
+[Xx]86/
+CMakeLists.txt.user
+CMakeFiles
+CMakeScripts
+Testing
+_deps
+CMakeUserPresets.json
+
+# ====================== #
+# IDE & Editor Files     #
+# ====================== #
+.vscode/
+.idea/
+*.vs/
+*.code-workspace
+*.swp
+*.swo
+*~
+*.bak
+
+# ====================== #
+# Dependency & Directories #
+# ====================== #
+deps/
+external/
+third_party/
+*.spv
+
+# ====================== #
+# OS & Tool Specific    #
+# ====================== #
+.DS_Store
+Thumbs.db
+/Game/Addons/viclib/bin/viclib.windows.template_debug.x86_64.dll
