@@ -56,7 +56,7 @@ target_link_libraries(${LIBNAME} PRIVATE godot-cpp)
 set_target_properties(${LIBNAME}
     PROPERTIES
     # The generator expression here prevents msvc from adding a Debug or Release subdir.
-    RUNTIME_OUTPUT_DIRECTORY "$<1:${PROJECT_SOURCE_DIR}/${GODOT_PROJECT_DIR}/Addons/${LIBNAME}/bin>"
+    RUNTIME_OUTPUT_DIRECTORY "$<1:${PROJECT_SOURCE_DIR}/${GODOT_PROJECT_DIR}/addons/${LIBNAME}/bin>"
 
     PREFIX ""
     OUTPUT_NAME "${LIBNAME}${godot-cpp_SUFFIX}"

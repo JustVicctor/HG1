@@ -1,6 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dbeshxav46qgt"]
 
-[ext_resource type="Shader" uid="uid://ff56mxcw6qek" path="res://Content/Shaders/Grid/ProceduralGrid.gdshader" id="1_bcm8v"]
+[ext_resource type="Shader" uid="uid://ff56mxcw6qek" path="res://content/shaders/procedural_grid/procedural_grid.gdshader" id="1_bcm8v"]
+
 
 
 [resource]

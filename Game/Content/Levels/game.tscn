@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3bc63fhsbg1m"]
+
+[ext_resource type="PackedScene" uid="uid://cybg0rabvweni" path="res://content/levels/zoo.tscn" id="1_6xu6m"]
+
+[node name="Game" type="Game"]
+StartLevelScene = ExtResource("1_6xu6m")

@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://cybg0rabvweni"]
+
+[ext_resource type="Material" uid="uid://cn3f72bews82k" path="res://content/shaders/procedural_grid/m_floor.tres" id="1_1pylp"]
+[ext_resource type="Material" uid="uid://dbeshxav46qgt" path="res://content/shaders/procedural_grid/m_static.tres" id="2_jdov8"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dipx4"]
+size = Vector2(50, 50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jdov8"]
+points = PackedVector3Array(-25, 0, -25, -25, 0, 25, 25, 0, -25, 25, 0, 25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1pylp"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_q7w31"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="Zoo" type="Level"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+material_override = ExtResource("1_1pylp")
+mesh = SubResource("PlaneMesh_dipx4")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("ConvexPolygonShape3D_jdov8")
+
+[node name="CenterBox" type="StaticBody3D" parent="."]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CenterBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+material_override = ExtResource("2_jdov8")
+mesh = SubResource("BoxMesh_1pylp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CenterBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("ConvexPolygonShape3D_q7w31")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+shadow_enabled = true
