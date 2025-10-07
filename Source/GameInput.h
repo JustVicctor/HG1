@@ -6,7 +6,7 @@ class GameInput : public godot::Node
     GDCLASS(GameInput, Node)
     
 public:
-    void _ready() override;
+    bool Initialize();
     
 protected:
     static void _bind_methods();
