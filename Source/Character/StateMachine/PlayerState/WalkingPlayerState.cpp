@@ -1,4 +1,4 @@
-﻿#include "WalkingHeroState.h"
+﻿#include "WalkingPlayerState.h"
 
 #include "Character/Player/Player.h"
 #include "Character/Player/PlayerScene.h"
@@ -13,7 +13,6 @@ bool WalkingPlayerState::Initialize(Character* character, const ProcessStateTran
 
 void WalkingPlayerState::Process(const float delta)
 {
-    m_Player->Process(delta);
 }
 
 void WalkingPlayerState::PhysicsProcess(const float delta)

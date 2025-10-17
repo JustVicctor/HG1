@@ -18,6 +18,10 @@ void Character::Process(const double delta)
 {
 }
 
+void Character::PhysicsProcess(const float delta)
+{
+}
+
 CharacterResource* Character::GetResource()
 {
     return nullptr;

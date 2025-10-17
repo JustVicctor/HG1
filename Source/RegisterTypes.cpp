@@ -12,8 +12,10 @@
 #include "Character/Player/PlayerScene.h"
 #include "Character/StateMachine/CharacterBaseState.h"
 #include "Character/StateMachine/CharacterStateMachine.h"
-#include "Character/StateMachine/HeroState/IdlePlayerState.h"
-#include "Character/StateMachine/HeroState/WalkingHeroState.h"
+#include "Character/StateMachine/PlayerState/IdlePlayerState.h"
+#include "Character/StateMachine/PlayerState/WalkingPlayerState.h"
+#include "Interaction/InteractableNode.h"
+#include "Interaction/GrabbableNode.h"
 #include "Levels/Level.h"
 #include "Settings/GameSettings.h"
 #include "Settings/UserSettings.h"
@@ -53,6 +55,10 @@ void ViclibInitialize(ModuleInitializationLevel p_level)
 
 		ClassDB::register_runtime_class<Character>();
 		ClassDB::register_runtime_class<Player>();
+
+		// Interaction
+		ClassDB::register_runtime_class<InteractableNode>();
+		ClassDB::register_runtime_class<GrabbableNode>();
 	}
 }
 

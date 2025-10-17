@@ -5,6 +5,8 @@
 
 bool CharacterStateMachine::Initialize(Character* character)
 {
+    set_process_mode(PROCESS_MODE_DISABLED);
+    
     HG_ERR_FAIL_COND_V_MSG(!character, false, "Character is null");
     HG_ERR_FAIL_COND_V_MSG(!m_InitialState, false, "Initial state is null");
 
@@ -27,40 +29,22 @@ bool CharacterStateMachine::Initialize(Character* character)
     return true;
 }
 
-void CharacterStateMachine::_process(const double delta)
-{
-    HG_ERR_FAIL_COND_MSG(!m_CurrentState, "Current state is null");
-    m_CurrentState->Process(delta);
-}
-
-void CharacterStateMachine::_physics_process(const double delta)
-{
-    HG_ERR_FAIL_COND_MSG(!m_CurrentState, "Current state is null");
-    m_CurrentState->PhysicsProcess(delta);
-}
-
-void CharacterStateMachine::_input(const Ref<InputEvent>& inputEvent)
+void CharacterStateMachine::Input(const Ref<InputEvent>& inputEvent) const
 {
     HG_ERR_FAIL_COND_MSG(!m_CurrentState, "Current state is null");
     m_CurrentState->Input(inputEvent);
 }
 
-void CharacterStateMachine::_shortcut_input(const Ref<InputEvent>& inputEvent)
+void CharacterStateMachine::Process(const double delta) const
 {
     HG_ERR_FAIL_COND_MSG(!m_CurrentState, "Current state is null");
-    m_CurrentState->ShortcutInput(inputEvent);
+    m_CurrentState->Process(delta);
 }
 
-void CharacterStateMachine::_unhandled_input(const Ref<InputEvent>& inputEvent)
+void CharacterStateMachine::PhysicsProcess(const double delta) const
 {
     HG_ERR_FAIL_COND_MSG(!m_CurrentState, "Current state is null");
-    m_CurrentState->UnhandledInput(inputEvent);
-}
-
-void CharacterStateMachine::_unhandled_key_input(const Ref<InputEvent>& inputEvent)
-{
-    HG_ERR_FAIL_COND_MSG(!m_CurrentState, "Current state is null");
-    m_CurrentState->UnhandledKeyInput(inputEvent);
+    m_CurrentState->PhysicsProcess(delta);
 }
 
 void CharacterStateMachine::ProcessTransition(const ECharacterState state)

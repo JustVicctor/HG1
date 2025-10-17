@@ -8,7 +8,7 @@ namespace godot
     class PhysicsRayQueryParameters3D;
 }
 
-class GrabbableObject;
+class GrabbableNode;
 class PlayerScene;
 class PlayerResource;
 
@@ -21,8 +21,9 @@ public:
     
 	virtual void Input(const Ref<InputEvent>& inputEvent) override;
     virtual void Process(const double delta) override;
+    virtual void PhysicsProcess(const float delta) override;
     
-	void GrabObject(GrabbableObject* obj);
+	void GrabObject(GrabbableNode* obj);
 	void ReleaseGrabbed();
     
     virtual CharacterResource* GetResource() override;
@@ -31,13 +32,13 @@ public:
 protected:
 	void ProcessGrabbing(const float delta);
     void ProcessInteraction(const float delta);
-    void ProcessMouse(const float delta) const;
+    void ProcessMouse() const;
     
     Ref<PlayerResource> m_Resource = nullptr;
     PlayerScene* m_Scene = nullptr;
     
     Ref<PhysicsRayQueryParameters3D> m_Query;
-	GrabbableObject* m_GrabbableObject = nullptr;
+	GrabbableNode* m_GrabbableObject = nullptr;
     
     static void _bind_methods();
 };

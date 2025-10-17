@@ -17,12 +17,9 @@ class CharacterStateMachine : public Node
 public:
     bool Initialize(Character* character);
 
-    void _process(const double delta) override;
-    void _physics_process(const double delta) override;
-    void _input(const Ref<InputEvent>& inputEvent) override;
-    void _shortcut_input(const Ref<InputEvent>& inputEvent) override;
-    void _unhandled_input(const Ref<InputEvent>& inputEvent) override;
-    void _unhandled_key_input(const Ref<InputEvent>& inputEvent) override;
+    void Input(const Ref<InputEvent>& inputEvent) const;
+    void Process(const double delta) const;
+    void PhysicsProcess(const double delta) const;
 
 protected:
     void ProcessTransition(const ECharacterState state);

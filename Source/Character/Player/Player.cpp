@@ -6,8 +6,8 @@
 
 #include "Character/Player/PlayerResource.h"
 #include "Character/Player/PlayerScene.h"
-#include "Interaction/GrabbableObject.h"
-#include "Interaction/IInteractable.h"
+#include "Interaction/GrabbableNode.h"
+#include "Interaction/InteractableNode.h"
 #include "Utils/SweepUtils.h"
 
 bool Player::Initialize(const Ref<CharacterResource>& resource, CharacterScene* scene)
@@ -31,16 +31,28 @@ bool Player::Initialize(const Ref<CharacterResource>& resource, CharacterScene* 
 
 void Player::Input(const Ref<InputEvent>& inputEvent)
 {
+    const CharacterStateMachine* machine = m_Scene->GetCharacterStateMachine();
+    machine->Input(inputEvent);
 }
 
 void Player::Process(const double delta)
 {
-    ProcessMouse(delta);
+    const CharacterStateMachine* machine = m_Scene->GetCharacterStateMachine();
+    machine->Process(delta);
+    
     ProcessInteraction(delta);
-    ProcessGrabbing(delta);
 }
 
-void Player::GrabObject(GrabbableObject* obj)
+void Player::PhysicsProcess(const float delta)
+{
+    const CharacterStateMachine* machine = m_Scene->GetCharacterStateMachine();
+    machine->PhysicsProcess(delta);
+    
+    ProcessGrabbing(delta);
+    ProcessMouse();
+}
+
+void Player::GrabObject(GrabbableNode* obj)
 {
     m_GrabbableObject = obj;
     m_GrabbableObject->add_collision_exception_with(m_Scene);
@@ -53,6 +65,7 @@ void Player::ReleaseGrabbed()
 {
     if (!m_GrabbableObject)
         return;
+    
     m_GrabbableObject->remove_collision_exception_with(m_Scene);
     m_GrabbableObject->SetIsGrabbed(false);
     m_GrabbableObject = nullptr;
@@ -99,13 +112,13 @@ void Player::ProcessInteraction(const float delta)
         {
             if (needInteract)
             {
-                if (IInteractable* interactable = dynamic_cast<IInteractable*>(hit.HitObject))
+                if (InteractableNode* interactable = cast_to<InteractableNode>(hit.HitObject))
                     interactable->Interact(m_Scene);
             }
 
             if (isPrimary)
             {
-                if (GrabbableObject* grabbable = dynamic_cast<GrabbableObject*>(hit.HitObject))
+                if (GrabbableNode* grabbable = cast_to<GrabbableNode>(hit.HitObject))
                     GrabObject(grabbable);
             }
         }
@@ -119,7 +132,7 @@ void Player::ProcessInteraction(const float delta)
     ProcessGrabbing(delta);
 }
 
-void Player::ProcessMouse(const float delta) const
+void Player::ProcessMouse() const
 {
 	const auto gameInput = Game::GetGameInput();
 	const auto mouseOffset = gameInput->GetMouseOffset();

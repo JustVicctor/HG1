@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cybg0rabvweni"]
+[gd_scene load_steps=11 format=3 uid="uid://cybg0rabvweni"]
 
 [ext_resource type="Material" uid="uid://cn3f72bews82k" path="res://content/shaders/procedural_grid/m_floor.tres" id="1_1pylp"]
 [ext_resource type="Material" uid="uid://dbeshxav46qgt" path="res://content/shaders/procedural_grid/m_static.tres" id="2_jdov8"]
+[ext_resource type="Material" uid="uid://f2qkovn0m4js" path="res://content/shaders/procedural_grid/m_interactable.tres" id="3_q7w31"]
+[ext_resource type="Material" uid="uid://hn7pauew88tc" path="res://content/shaders/procedural_grid/m_dynamic.tres" id="4_6jffc"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_dipx4"]
 size = Vector2(50, 50)
@@ -13,6 +15,10 @@ points = PackedVector3Array(-25, 0, -25, -25, 0, 25, 25, 0, -25, 25, 0, 25)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_q7w31"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6jffc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j5fok"]
 
 [node name="Zoo" type="Level"]
 
@@ -41,3 +47,25 @@ shape = SubResource("ConvexPolygonShape3D_q7w31")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
 shadow_enabled = true
+
+[node name="InteractableNode" type="InteractableNode" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.8133762)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="InteractableNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+material_override = ExtResource("3_q7w31")
+mesh = SubResource("BoxMesh_6jffc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_j5fok")
+
+[node name="GrabbableNode" type="GrabbableNode" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.127943, 0.5, -1.1811035)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GrabbableNode"]
+material_override = ExtResource("4_6jffc")
+mesh = SubResource("BoxMesh_6jffc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GrabbableNode"]
+shape = SubResource("BoxShape3D_j5fok")

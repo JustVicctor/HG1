@@ -3,9 +3,9 @@
 
 using namespace godot;
 
-class GrabbableObject : public RigidBody3D
+class GrabbableNode : public RigidBody3D
 {
-    GDCLASS(GrabbableObject, RigidBody3D)
+    GDCLASS(GrabbableNode, RigidBody3D)
 
 public:
     bool IsGrabbed() const;

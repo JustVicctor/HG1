@@ -13,7 +13,6 @@ bool IdlePlayerState::Initialize(Character* character, const ProcessStateTransit
 
 void IdlePlayerState::Process(const float delta)
 {
-    m_Player->Process(delta);
 }
 
 void IdlePlayerState::PhysicsProcess(const float delta)

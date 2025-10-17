@@ -28,6 +28,9 @@ public:
     static Ref<UserSettings>& GetUserSettings();
 
     void _ready() override;
+    void _input(const Ref<InputEvent>& p_event) override;
+    void _process(double p_delta) override;
+    void _physics_process(double p_delta) override;
 
 protected:
     bool InitCharacter();

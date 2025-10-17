@@ -10,7 +10,7 @@ height = 1.79
 
 [node name="Character" type="PlayerScene" node_paths=PackedStringArray("Head", "HandJoint", "CharacterStateMachine")]
 Head = NodePath("Head")
-HandJoint = NodePath("Head/Generic6DOFJoint3D")
+HandJoint = NodePath("Head/StaticBody3D/Generic6DOFJoint3D")
 CharacterStateMachine = NodePath("StateMachine")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -27,12 +27,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59, 0)
 [node name="Camera3D" type="Camera3D" parent="Head"]
 fov = 65.0
 
-[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
-node_a = NodePath("../StaticBody3D")
-
 [node name="StaticBody3D" type="StaticBody3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+input_ray_pickable = false
+
+[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="Head/StaticBody3D"]
+node_a = NodePath("..")
+linear_limit_x/enabled = false
+linear_limit_y/enabled = false
+linear_limit_z/enabled = false
+angular_limit_x/enabled = false
+angular_limit_y/enabled = false
+angular_limit_z/enabled = false
 
 [node name="StateMachine" type="CharacterStateMachine" parent="." node_paths=PackedStringArray("InitialState")]
 InitialState = NodePath("IdlePlayerState")

@@ -56,6 +56,21 @@ void Game::_ready()
     print_line("Game is Ready");
 }
 
+void Game::_input(const Ref<InputEvent>& p_event)
+{
+    m_Character->Input(p_event);
+}
+
+void Game::_process(double delta)
+{
+    m_Character->Process(delta);
+}
+
+void Game::_physics_process(double delta)
+{
+    m_Character->PhysicsProcess(delta);
+}
+
 bool Game::InitCharacter()
 {
     HG_ERR_FAIL_COND_V_MSG(m_CharacterResource.is_null(), false, "Character Resource is invalid!");

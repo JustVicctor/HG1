@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "CharacterResource.h"
 #include "godot_cpp/classes/ref_counted.hpp"
+#include "godot_cpp/classes/input_event.hpp"
 
 namespace godot
 {
@@ -19,6 +20,7 @@ public:
 
 	virtual void Input(const Ref<InputEvent>& inputEvent);
     virtual void Process(const double delta);
+    virtual void PhysicsProcess(const float delta);
     
     virtual CharacterResource* GetResource();
     virtual CharacterScene* GetScene() const;

@@ -5,7 +5,7 @@
 #include "godot_cpp/classes/generic6_dof_joint3d.hpp"
 
 #include "Game.h"
-#include "Interaction/GrabbableObject.h"
+#include "Interaction/GrabbableNode.h"
 #include "Character/StateMachine/CharacterStateMachine.h"
 
 bool PlayerScene::Initialize()
