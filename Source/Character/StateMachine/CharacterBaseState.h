@@ -3,6 +3,11 @@
 #include <functional>
 #include "godot_cpp/classes/node.hpp"
 
+#include "Settings/GameSettings.h"
+#include "Settings/UserSettings.h"
+#include "Character/StateMachine/CharacterStateMachineCommon.h"
+
+class Character;
 using namespace godot;
 
 class CharacterBaseState : public Node
@@ -10,9 +15,9 @@ class CharacterBaseState : public Node
     GDCLASS(CharacterBaseState, Node)
 	
 public:
-	using ProcessStateTransition = std::function<void(const StringName&)>;
+	using ProcessStateTransition = std::function<void(const ECharacterState)>;
 	
-    virtual void Initialize(const ProcessStateTransition func);
+    virtual bool Initialize(Character* character, const ProcessStateTransition func);
     virtual void Enter(){}
     virtual void Exit(){}
 	
@@ -23,12 +28,14 @@ public:
 	virtual void UnhandledInput(const Ref<InputEvent>& inputEvent){}
 	virtual void UnhandledKeyInput(const Ref<InputEvent>& inputEvent){}
 
-    const StringName& GetStateName() const;
+    ECharacterState GetCharacterState() const;
 
 protected:
-
-	StringName m_StateName;
+	ECharacterState m_State = ECharacterState::None;
 	ProcessStateTransition m_ProcessStateTransition;
+	
+	Ref<UserSettings> userSettings;
+	Ref<GameSettings> gameSettings;
 	
 	static void _bind_methods();
 };

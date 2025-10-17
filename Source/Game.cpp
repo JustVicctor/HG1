@@ -6,7 +6,8 @@
 #include "Levels/Level.h"
 #include "Settings/GameSettings.h"
 #include "Settings/UserSettings.h"
-#include "Character/Character.h"
+#include "Character/CharacterResource.h"
+#include "Character/CharacterScene.h"
 
 Game* Game::s_Singleton = nullptr;
 
@@ -20,12 +21,12 @@ GameInput* Game::GetGameInput()
     return s_Singleton->m_GameInput;
 }
 
-godot::Ref<GameSettings>& Game::GetGameSettings()
+Ref<GameSettings>& Game::GetGameSettings()
 {
     return s_Singleton->m_GameSettings;
 }
 
-godot::Ref<UserSettings>& Game::GetUserSettings()
+Ref<UserSettings>& Game::GetUserSettings()
 {
     return s_Singleton->m_UserSettings;
 }
@@ -52,16 +53,16 @@ void Game::_ready()
 		return;
     }
 
-    godot::print_line("Game is Ready");
+    print_line("Game is Ready");
 }
 
 bool Game::InitCharacter()
 {
-    HG_ERR_FAIL_COND_V_MSG(m_CharacterScene.is_null(), false, "Character Scene is invalid!");
-    m_Character = cast_to<Character>(m_CharacterScene->instantiate());
-    HG_ERR_FAIL_COND_V_MSG(m_Character == nullptr, false, "Character failed to instantiate!");
-    add_child(m_Character);
-    return m_Character->Initialize();
+    HG_ERR_FAIL_COND_V_MSG(m_CharacterResource.is_null(), false, "Character Resource is invalid!");
+    m_Character = CharacterResource::CreateCharacter(m_CharacterResource);
+    HG_ERR_FAIL_COND_V_MSG(m_Character.is_null(), false, "Character failed to instantiate!");
+    add_child(m_Character->GetScene());
+    return true;
 }
 
 bool Game::InitStartLevel()
@@ -83,6 +84,6 @@ bool Game::InitGameInput()
 
 void Game::_bind_methods()
 {
+    HG_BIND_PROPERTY_RESOURCE(Game, "CharacterResource", CharacterResource, SetCharacterResource, GetCharacterResource);
     HG_BIND_PROPERTY_PACKED(Game, "StartLevelScene", SetStartLevelScene, GetStartLevelScene);
-    HG_BIND_PROPERTY_PACKED(Game, "CharacterScene", SetCharacterScene, GetCharacterScene);
 }

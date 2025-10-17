@@ -28,4 +28,7 @@ godot::Ref<GameSettings> GameSettings::LoadOrCreate()
 
 void GameSettings::_bind_methods()
 {
+	HG_BIND_PROPERTY_FLOAT(GameSettings, "MaxPitch", SetMaxPitch, GetMaxPitch);
+	HG_BIND_PROPERTY_FLOAT(GameSettings, "MinPitch", SetMinPitch, GetMinPitch);
+	HG_BIND_PROPERTY_FLOAT(GameSettings, "GravityForce", SetGravityForce, GetGravityForce);
 }

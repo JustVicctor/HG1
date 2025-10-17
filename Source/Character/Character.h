@@ -1,23 +1,28 @@
 ﻿#pragma once
-#include "godot_cpp/classes/character_body3d.hpp"
-#include "Utils/Utils.h"
-
 #include "CharacterResource.h"
-#include "StateMachine/CharacterStateMachine.h"
+#include "godot_cpp/classes/ref_counted.hpp"
 
-class CharacterStateMachine;
+namespace godot
+{
+    class InputEvent;
+}
+
+class CharacterScene;
 using namespace godot;
 
-class Character : public CharacterBody3D
+class Character : public RefCounted
 {
-    GDCLASS(Character, CharacterBody3D)
+    GDCLASS(Character, RefCounted)
     
 public:
-    bool Initialize();
+    virtual bool Initialize(const Ref<CharacterResource>& resource, CharacterScene* scene);
+
+	virtual void Input(const Ref<InputEvent>& inputEvent);
+    virtual void Process(const double delta);
+    
+    virtual CharacterResource* GetResource();
+    virtual CharacterScene* GetScene() const;
     
 protected:
     static void _bind_methods();
-
-    HG_ADD_PROPERTY(godot::Ref<CharacterResource>, CharacterResource, nullptr, godot::Ref<CharacterResource>, const godot::Ref<CharacterResource>&);
-    HG_ADD_PROPERTY(CharacterStateMachine*, CharacterStateMachine, nullptr, CharacterStateMachine*, CharacterStateMachine*);
 };

@@ -1,14 +1,20 @@
 ﻿#include "CharacterBaseState.h"
 
-void CharacterBaseState::Initialize(const ProcessStateTransition func)
+#include "Game.h"
+
+bool CharacterBaseState::Initialize(Character* character, const ProcessStateTransition func)
 {
     set_process_mode(PROCESS_MODE_DISABLED);
     m_ProcessStateTransition = func;
+    
+	userSettings = Game::GetUserSettings();
+	gameSettings = Game::GetGameSettings();
+    return true;
 }
 
-const StringName& CharacterBaseState::GetStateName() const
+ECharacterState CharacterBaseState::GetCharacterState() const
 {
-    return m_StateName;
+    return m_State;
 }
 
 void CharacterBaseState::_bind_methods()

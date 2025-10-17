@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6xvv6en41t62"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bfexx"]
+radius = 0.29
+height = 1.79
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bfexx"]
+radius = 0.29
+height = 1.79
+
+[node name="Character" type="PlayerScene" node_paths=PackedStringArray("Head", "HandJoint", "CharacterStateMachine")]
+Head = NodePath("Head")
+HandJoint = NodePath("Head/Generic6DOFJoint3D")
+CharacterStateMachine = NodePath("StateMachine")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.895, 0)
+mesh = SubResource("CapsuleMesh_bfexx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.895, 0)
+shape = SubResource("CapsuleShape3D_bfexx")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+fov = 65.0
+
+[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+node_a = NodePath("../StaticBody3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="StateMachine" type="CharacterStateMachine" parent="." node_paths=PackedStringArray("InitialState")]
+InitialState = NodePath("IdlePlayerState")
+
+[node name="IdlePlayerState" type="IdlePlayerState" parent="StateMachine"]
+
+[node name="WalkingPlayerState" type="WalkingPlayerState" parent="StateMachine"]

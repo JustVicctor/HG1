@@ -1,20 +1,33 @@
 ﻿#include "Character.h"
+#include "Character/CharacterScene.h"
 
-#include "Character/CharacterResource.h"
-#include "Character/StateMachine/CharacterStateMachine.h"
-
-bool Character::Initialize()
+bool Character::Initialize(const Ref<CharacterResource>& resource, CharacterScene* scene)
 {
-    HG_ERR_FAIL_COND_V_MSG(m_CharacterResource.is_null(), false, "Character Resource is invalid!");
-    HG_ERR_FAIL_COND_V_MSG(m_CharacterStateMachine == nullptr, false, "Character State Machine is invalid!");
-    
-    bool isReady = true;
-    isReady &= m_CharacterStateMachine->Initialize(this);
-    return isReady;
+    return true;
+}
+
+void Character::Input(const Ref<InputEvent>& inputEvent)
+{
+}
+
+void Input(const Ref<InputEvent>& inputEvent)
+{
+}
+
+void Character::Process(const double delta)
+{
+}
+
+CharacterResource* Character::GetResource()
+{
+    return nullptr;
+}
+
+CharacterScene* Character::GetScene() const
+{
+    return nullptr;
 }
 
 void Character::_bind_methods()
 {
-    HG_BIND_PROPERTY_RESOURCE(Character, "CharacterResource", CharacterResource, SetCharacterResource, GetCharacterResource);
-    HG_BIND_PROPERTY_NODE(Character, "CharacterStateMachine", CharacterStateMachine, SetCharacterStateMachine, GetCharacterStateMachine);
 }

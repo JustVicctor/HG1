@@ -1,8 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://d3bc63fhsbg1m"]
 
 [ext_resource type="PackedScene" uid="uid://cybg0rabvweni" path="res://content/levels/zoo.tscn" id="1_6xu6m"]
-[ext_resource type="PackedScene" uid="uid://b6xvv6en41t62" path="res://content/characters/character.tscn" id="2_87ji4"]
+[ext_resource type="PlayerResource" uid="uid://c02onnawiko1l" path="res://content/characters/player/player_resource.tres" id="1_87ji4"]
 
 [node name="Game" type="Game"]
+CharacterResource = ExtResource("1_87ji4")
 StartLevelScene = ExtResource("1_6xu6m")
-CharacterScene = ExtResource("2_87ji4")

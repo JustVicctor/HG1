@@ -1,15 +1,22 @@
 ﻿#pragma once
 #include "Utils/Utils.h"
+
 #include "godot_cpp/classes/node3d.hpp"
 #include "godot_cpp/classes/packed_scene.hpp"
 
+#include "Character/Character.h"
+
 class Character;
+class CharacterResource;
+class CharacterScene;
 class GameInput;
 class Level;
 class UserSettings;
 class GameSettings;
 
-class Game : public godot::Node3D
+using namespace godot;
+
+class Game : public Node3D
 {
     GDCLASS(Game, Node3D)
     static Game* s_Singleton;
@@ -17,8 +24,8 @@ class Game : public godot::Node3D
 public:
     static Game* Get();
     static GameInput* GetGameInput();
-    static godot::Ref<GameSettings>& GetGameSettings();
-    static godot::Ref<UserSettings>& GetUserSettings();
+    static Ref<GameSettings>& GetGameSettings();
+    static Ref<UserSettings>& GetUserSettings();
 
     void _ready() override;
 
@@ -28,14 +35,14 @@ protected:
     bool InitGameInput();
     
     GameInput* m_GameInput;
-	godot::Ref<GameSettings> m_GameSettings;
-	godot::Ref<UserSettings> m_UserSettings;
+	Ref<GameSettings> m_GameSettings;
+	Ref<UserSettings> m_UserSettings;
 
-    Character* m_Character = nullptr;
+    Ref<Character> m_Character;
 	Level* m_StartLevel = nullptr;
     
     static void _bind_methods();
 
-    HG_ADD_PROPERTY(godot::Ref<godot::PackedScene>, StartLevelScene, nullptr, godot::Ref<godot::PackedScene>, const godot::Ref<godot::PackedScene>&);
-    HG_ADD_PROPERTY(godot::Ref<godot::PackedScene>, CharacterScene, nullptr, godot::Ref<godot::PackedScene>, const godot::Ref<godot::PackedScene>&);
+    HG_ADD_PROPERTY(Ref<CharacterResource>, CharacterResource, nullptr, Ref<CharacterResource>, const Ref<CharacterResource>&);
+    HG_ADD_PROPERTY(Ref<PackedScene>, StartLevelScene, nullptr, Ref<PackedScene>, const Ref<PackedScene>&);
 };

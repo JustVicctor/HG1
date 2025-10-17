@@ -28,4 +28,6 @@ godot::Ref<UserSettings> UserSettings::LoadOrCreate()
 
 void UserSettings::_bind_methods()
 {
+	HG_BIND_PROPERTY_FLOAT(UserSettings, "HorizontalMouseSensitivity", SetHorizontalMouseSensitivity, GetHorizontalMouseSensitivity);
+	HG_BIND_PROPERTY_FLOAT(UserSettings, "VerticalMouseSensitivity", SetVerticalMouseSensitivity, GetVerticalMouseSensitivity);
 }

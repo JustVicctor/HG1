@@ -1,0 +1,6 @@
+[gd_resource type="PlayerResource" load_steps=2 format=3 uid="uid://c02onnawiko1l"]
+
+[ext_resource type="PackedScene" uid="uid://b6xvv6en41t62" path="res://content/characters/player/player_scene.tscn" id="1_sbwx8"]
+
+[resource]
+CharacterScene = ExtResource("1_sbwx8")

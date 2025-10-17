@@ -4,21 +4,18 @@
 #include "godot_cpp/classes/input_event.hpp"
 
 #include "Utils/Utils.h"
+#include "CharacterStateMachineCommon.h"
 
+class Character;
 class CharacterBaseState;
 using namespace godot;
-
-namespace godot
-{
-    class CharacterBody3D;
-}
 
 class CharacterStateMachine : public Node
 {
     GDCLASS(CharacterStateMachine, Node)
 	
 public:
-    bool Initialize(const CharacterBody3D* character);
+    bool Initialize(Character* character);
 
     void _process(const double delta) override;
     void _physics_process(const double delta) override;
@@ -28,9 +25,9 @@ public:
     void _unhandled_key_input(const Ref<InputEvent>& inputEvent) override;
 
 protected:
-    void ProcessTransition(const StringName& stateName);
+    void ProcessTransition(const ECharacterState state);
     
-    std::unordered_map<StringName, CharacterBaseState*> m_States;
+    std::unordered_map<ECharacterState, CharacterBaseState*> m_States;
     CharacterBaseState* m_CurrentState = nullptr;
 
     static void _bind_methods();
