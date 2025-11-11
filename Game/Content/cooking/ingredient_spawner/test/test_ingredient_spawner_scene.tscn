@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2d65mvrnsgah"]
+
+[ext_resource type="IngredientSpawnerResource" uid="uid://dgnw10fn5p7n6" path="res://content/cooking/ingredient_spawner/test/test_ingredient_spawner_resource.tres" id="1_3alvg"]
+[ext_resource type="Material" uid="uid://f2qkovn0m4js" path="res://content/shaders/procedural_grid/m_interactable.tres" id="2_s0set"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3alvg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3alvg"]
+
+[node name="TestIngredientSpawnerScene" type="IngredientSpawnerScene" node_paths=PackedStringArray("Marker")]
+Resource = ExtResource("1_3alvg")
+Marker = NodePath("Marker3D")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_3alvg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_s0set")
+mesh = SubResource("BoxMesh_3alvg")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

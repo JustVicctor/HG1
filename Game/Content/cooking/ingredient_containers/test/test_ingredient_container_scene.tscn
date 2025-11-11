@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckyi0nydpgec0"]
+
+[ext_resource type="Material" uid="uid://hn7pauew88tc" path="res://content/shaders/procedural_grid/m_dynamic.tres" id="1_1s0yd"]
+[ext_resource type="IngredientContainerResource" uid="uid://c86jfc5wk1ol6" path="res://content/cooking/ingredient_containers/test/test_ingredient_container_resource.tres" id="1_8wut7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wqeg1"]
+size = Vector3(0.25, 0.1, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wqeg1"]
+size = Vector3(0.25, 0.1, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1s0yd"]
+size = Vector3(0.4, 0.4, 0.4)
+
+[node name="TestIngredientContainerScene" type="IngredientContainerScene" unique_id=675215434 node_paths=PackedStringArray("Area")]
+Area = NodePath("Area3D")
+Resource = ExtResource("1_8wut7")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+collision_layer = 7
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1627869965]
+material_override = ExtResource("1_1s0yd")
+mesh = SubResource("BoxMesh_wqeg1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1937386303]
+shape = SubResource("BoxShape3D_wqeg1")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1098352658]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+collision_layer = 0
+collision_mask = 2
+input_ray_pickable = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=450732660]
+shape = SubResource("BoxShape3D_1s0yd")

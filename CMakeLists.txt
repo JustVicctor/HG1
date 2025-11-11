@@ -7,6 +7,7 @@ endif()
 
 set(CMAKE_CXX_STANDARD 17)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(LIBNAME "viclib" CACHE STRING "The name of the library")
 set(GODOT_PROJECT_DIR "Game" CACHE STRING "The directory of a Godot project folder")
 

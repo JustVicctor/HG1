@@ -3,6 +3,8 @@
 #include "Utils/Utils.h"
 #include "Character/CharacterScene.h"
 
+class InteractionComponent;
+
 namespace godot
 {
 	class Generic6DOFJoint3D;
@@ -24,4 +26,5 @@ protected:
 	HG_ADD_PROPERTY(Node3D*, Head, nullptr, Node3D*, Node3D*);
 	HG_ADD_PROPERTY(Generic6DOFJoint3D*, HandJoint, nullptr, Generic6DOFJoint3D*, Generic6DOFJoint3D*);
     HG_ADD_PROPERTY(CharacterStateMachine*, CharacterStateMachine, nullptr, CharacterStateMachine*, CharacterStateMachine*);
+	HG_ADD_PROPERTY(InteractionComponent*, InteractionComponent, nullptr, InteractionComponent*, InteractionComponent*);
 };

@@ -19,7 +19,7 @@ public:
     
 protected:
     virtual Ref<Character> CreateCharacter();
-    virtual CharacterScene* CreateCharacterScene();
+    CharacterScene* CreateCharacterScene() const;
     
     static void _bind_methods();
     

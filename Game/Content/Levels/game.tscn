@@ -3,6 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://cybg0rabvweni" path="res://content/levels/zoo.tscn" id="1_6xu6m"]
 [ext_resource type="PlayerResource" uid="uid://c02onnawiko1l" path="res://content/characters/player/player_resource.tres" id="1_87ji4"]
 
-[node name="Game" type="Game"]
+[node name="Game" type="Game" unique_id=805529155]
 CharacterResource = ExtResource("1_87ji4")
 StartLevelScene = ExtResource("1_6xu6m")

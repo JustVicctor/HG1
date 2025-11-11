@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cn0kvwjdr0lyt"]
+
+[ext_resource type="FoodStandResource" uid="uid://djv8anje6odou" path="res://content/cooking/food_stand/test/test_food_stand_resource.tres" id="1_xtfdu"]
+[ext_resource type="Material" uid="uid://f2qkovn0m4js" path="res://content/shaders/procedural_grid/m_interactable.tres" id="2_dgaux"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_dgaux"]
+size = Vector3(1, 0.1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o2v7o"]
+size = Vector3(1, 0.1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dgaux"]
+
+[node name="TestFoodStand" type="FoodStandScene" node_paths=PackedStringArray("Area", "Marker")]
+Area = NodePath("Area3D")
+Marker = NodePath("Marker3D")
+Resource = ExtResource("1_xtfdu")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_dgaux")
+mesh = SubResource("BoxMesh_dgaux")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_o2v7o")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
+collision_layer = 0
+collision_mask = 4
+input_ray_pickable = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_dgaux")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)

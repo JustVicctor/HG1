@@ -10,12 +10,6 @@ Ref<Character> PlayerResource::CreateCharacter()
     return character;
 }
 
-CharacterScene* PlayerResource::CreateCharacterScene()
-{
-    PlayerScene* scene = cast_to<PlayerScene>(m_CharacterScene->instantiate());
-    return scene && scene->Initialize() ? scene : nullptr;
-}
-
 void PlayerResource::_bind_methods()
 {
 	ADD_GROUP("Interaction", "interaction_");

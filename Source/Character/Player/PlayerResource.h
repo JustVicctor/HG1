@@ -9,7 +9,6 @@ public:
     
 protected:
     virtual Ref<Character> CreateCharacter() override;
-    virtual CharacterScene* CreateCharacterScene() override;
     
     static void _bind_methods();
     

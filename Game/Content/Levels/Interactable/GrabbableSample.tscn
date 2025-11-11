@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://kao472br7bf5"]
+
+[ext_resource type="Material" uid="uid://hn7pauew88tc" path="res://content/shaders/procedural_grid/m_dynamic.tres" id="1_ibe65"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_31usc"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_31usc"]
+
+[node name="GrabbableSample" type="Grabbable" unique_id=214566551]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1394506481]
+material_override = ExtResource("1_ibe65")
+mesh = SubResource("SphereMesh_31usc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=126665581]
+shape = SubResource("SphereShape3D_31usc")

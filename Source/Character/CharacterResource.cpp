@@ -23,15 +23,16 @@ Ref<Character> CharacterResource::CreateCharacter()
     return nullptr;
 }
 
-CharacterScene* CharacterResource::CreateCharacterScene()
+CharacterScene* CharacterResource::CreateCharacterScene() const
 {
-    return nullptr;
+    CharacterScene* scene = cast_to<CharacterScene>(m_CharacterScene->instantiate());
+    return scene && scene->Initialize() ? scene : nullptr;
 }
 
 void CharacterResource::_bind_methods()
 {
 	ADD_GROUP("Scene", "scene_");
-    HG_BIND_PROPERTY_PACKED(CharacterResource, "CharacterScene", SetCharacterScene, GetCharacterScene);
+    HG_BIND_PROPERTY_PACKED_SCENE(CharacterResource, "CharacterScene", SetCharacterScene, GetCharacterScene);
     
 	ADD_GROUP("Movement", "movement_");
 	HG_BIND_PROPERTY_FLOAT(CharacterResource, "MovementSpeed", SetMovementSpeed, GetMovementSpeed);

@@ -1,0 +1,8 @@
+[gd_resource type="IngredientContainerResource" load_steps=3 format=3 uid="uid://c86jfc5wk1ol6"]
+
+[ext_resource type="IngredientResource" uid="uid://ds1n6se5cwvps" path="res://content/cooking/ingredients/test/test_ingredient_resource.tres" id="1_7ki8d"]
+[ext_resource type="IngredientResource" uid="uid://cync4th3h2ooq" path="res://content/cooking/ingredients/test/test2_ingredient_resource.tres" id="2_2cwqq"]
+
+[resource]
+AllowedIngredients = Array[IngredientResource]([ExtResource("1_7ki8d"), ExtResource("2_2cwqq")])
+Name = &"test_container"

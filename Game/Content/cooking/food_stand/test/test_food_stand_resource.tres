@@ -1,0 +1,6 @@
+[gd_resource type="FoodStandResource" load_steps=2 format=3 uid="uid://djv8anje6odou"]
+
+[ext_resource type="IngredientContainerResource" uid="uid://c86jfc5wk1ol6" path="res://content/cooking/ingredient_containers/test/test_ingredient_container_resource.tres" id="1_ck10x"]
+
+[resource]
+AllowedIngredientContainers = Array[IngredientContainerResource]([ExtResource("1_ck10x")])

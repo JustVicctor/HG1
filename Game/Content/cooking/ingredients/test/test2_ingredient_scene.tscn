@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://3rfuw2hhonm2"]
+
+[ext_resource type="IngredientResource" uid="uid://cync4th3h2ooq" path="res://content/cooking/ingredients/test/test2_ingredient_resource.tres" id="1_5u1xh"]
+[ext_resource type="Material" uid="uid://f2qkovn0m4js" path="res://content/shaders/procedural_grid/m_interactable.tres" id="1_7klyb"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_714qo"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_714qo"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[node name="TestIngredientScene" type="IngredientScene"]
+Resource = ExtResource("1_5u1xh")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+collision_layer = 3
+collision_mask = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_7klyb")
+mesh = SubResource("BoxMesh_714qo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_714qo")

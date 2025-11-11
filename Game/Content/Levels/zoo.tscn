@@ -1,9 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://cybg0rabvweni"]
+[gd_scene load_steps=17 format=3 uid="uid://cybg0rabvweni"]
 
 [ext_resource type="Material" uid="uid://cn3f72bews82k" path="res://content/shaders/procedural_grid/m_floor.tres" id="1_1pylp"]
 [ext_resource type="Material" uid="uid://dbeshxav46qgt" path="res://content/shaders/procedural_grid/m_static.tres" id="2_jdov8"]
+[ext_resource type="PackedScene" uid="uid://cn0kvwjdr0lyt" path="res://content/cooking/food_stand/test/test_food_stand_scene.tscn" id="3_mvxwi"]
 [ext_resource type="Material" uid="uid://f2qkovn0m4js" path="res://content/shaders/procedural_grid/m_interactable.tres" id="3_q7w31"]
-[ext_resource type="Material" uid="uid://hn7pauew88tc" path="res://content/shaders/procedural_grid/m_dynamic.tres" id="4_6jffc"]
+[ext_resource type="PackedScene" uid="uid://cwbqahsx0x8da" path="res://content/cooking/ingredients/test/test_ingredient_scene.tscn" id="5_dqy6b"]
+[ext_resource type="PackedScene" uid="uid://3rfuw2hhonm2" path="res://content/cooking/ingredients/test/test2_ingredient_scene.tscn" id="6_mvxwi"]
+[ext_resource type="PackedScene" uid="uid://ckyi0nydpgec0" path="res://content/cooking/ingredient_containers/test/test_ingredient_container_scene.tscn" id="7_mvxwi"]
+[ext_resource type="PackedScene" uid="uid://b2d65mvrnsgah" path="res://content/cooking/ingredient_spawner/test/test_ingredient_spawner_scene.tscn" id="8_11w0u"]
+[ext_resource type="PackedScene" uid="uid://c0t3yj6d4bw1u" path="res://content/assets/cooking/Table.glb" id="9_upj6n"]
+[ext_resource type="PackedScene" uid="uid://kao472br7bf5" path="res://content/levels/Interactable/GrabbableSample.tscn" id="10_cwwhc"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_dipx4"]
 size = Vector2(50, 50)
@@ -20,52 +26,87 @@ points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j5fok"]
 
-[node name="Zoo" type="Level"]
+[node name="Zoo" type="Level" unique_id=1265869742]
 
-[node name="Floor" type="StaticBody3D" parent="."]
+[node name="Floor" type="StaticBody3D" parent="." unique_id=869178519]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=889826252]
 material_override = ExtResource("1_1pylp")
 mesh = SubResource("PlaneMesh_dipx4")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Floor"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Floor" unique_id=179530114]
 shape = SubResource("ConvexPolygonShape3D_jdov8")
 
-[node name="CenterBox" type="StaticBody3D" parent="."]
+[node name="CenterBox" type="StaticBody3D" parent="." unique_id=1968627665]
 transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CenterBox"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CenterBox" unique_id=1218650858]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 material_override = ExtResource("2_jdov8")
 mesh = SubResource("BoxMesh_1pylp")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CenterBox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CenterBox" unique_id=1163517436]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_q7w31")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="CenterBox2" type="StaticBody3D" parent="." unique_id=556916065]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 3, 0, -1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CenterBox2" unique_id=1415194142]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+material_override = ExtResource("2_jdov8")
+mesh = SubResource("BoxMesh_1pylp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CenterBox2" unique_id=1222943966]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("ConvexPolygonShape3D_q7w31")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1630583253]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
 shadow_enabled = true
 
-[node name="InteractableNode" type="InteractableNode" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.8133762)
+[node name="TestIngredientScene" parent="." unique_id=419830504 instance=ExtResource("5_dqy6b")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.18030322, 1.6034604, -2.7414997)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="InteractableNode"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[node name="TestIngredientScene2" parent="." unique_id=1922947993 instance=ExtResource("6_mvxwi")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.2622826, 1.1250002, -2.7566245)
+
+[node name="TestIngredientContainerScene" parent="." unique_id=285862584 instance=ExtResource("7_mvxwi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2275561, 1.0499998, -2.7410505)
+
+[node name="TestFoodStand" parent="." unique_id=356752916 instance=ExtResource("3_mvxwi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.05, -1)
+
+[node name="TestIngredientSpawnerScene" parent="." unique_id=1214220184 instance=ExtResource("8_11w0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 1)
+
+[node name="Table" parent="." unique_id=1366842043 instance=ExtResource("9_upj6n")]
+transform = Transform3D(0.99999404, 0, 0.003490653, 0, 1, 0, -0.003490653, 0, 0.99999404, -2.494295, 0, -0.81353015)
+
+[node name="Table2" parent="." unique_id=1547471929 instance=ExtResource("9_upj6n")]
+transform = Transform3D(0.99992996, 0, 0.011833056, 0, 1, 0, -0.011833056, 0, 0.99992996, -2.494295, 0, -2.8539152)
+
+[node name="GrabbableSample" parent="." unique_id=1988250445 instance=ExtResource("10_cwwhc")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=166165383]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=605826806]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48986286, -2.8133762)
 material_override = ExtResource("3_q7w31")
 mesh = SubResource("BoxMesh_6jffc")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableNode"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=439602563]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -2.8133762)
 shape = SubResource("BoxShape3D_j5fok")
 
-[node name="GrabbableNode" type="GrabbableNode" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.127943, 0.5, -1.1811035)
+[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=1191439521]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="GrabbableNode"]
-material_override = ExtResource("4_6jffc")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2" unique_id=1071920422]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2254156, 0.5, -2.8133762)
+material_override = ExtResource("3_q7w31")
 mesh = SubResource("BoxMesh_6jffc")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GrabbableNode"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=155913216]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2254156, 0.5, -2.8133762)
 shape = SubResource("BoxShape3D_j5fok")

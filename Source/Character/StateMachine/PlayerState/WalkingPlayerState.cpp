@@ -17,9 +17,9 @@ void WalkingPlayerState::Process(const float delta)
 
 void WalkingPlayerState::PhysicsProcess(const float delta)
 {
-    ProcessGravity(delta);
-    ProcessMove(delta);
-    ProcessVelocity();
+	ProcessGravity(delta);
+	ProcessMove(delta);
+	ProcessVelocity();
 
 	const CharacterScene* scene = m_Player->GetScene();
 	const Vector3 velocity = scene->get_velocity();

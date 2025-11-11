@@ -1,0 +1,6 @@
+[gd_resource type="IngredientSpawnerResource" load_steps=2 format=3 uid="uid://dgnw10fn5p7n6"]
+
+[ext_resource type="PackedScene" uid="uid://cwbqahsx0x8da" path="res://content/cooking/ingredients/test/test_ingredient_scene.tscn" id="1_ylsnu"]
+
+[resource]
+IngredientScene = ExtResource("1_ylsnu")

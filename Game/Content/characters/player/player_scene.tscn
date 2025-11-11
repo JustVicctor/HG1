@@ -8,30 +8,42 @@ height = 1.79
 radius = 0.29
 height = 1.79
 
-[node name="Character" type="PlayerScene" node_paths=PackedStringArray("Head", "HandJoint", "CharacterStateMachine")]
+[node name="Character" type="PlayerScene" unique_id=406975587 node_paths=PackedStringArray("Head", "HandJoint", "CharacterStateMachine", "InteractionComponent")]
 Head = NodePath("Head")
 HandJoint = NodePath("Head/StaticBody3D/Generic6DOFJoint3D")
 CharacterStateMachine = NodePath("StateMachine")
+InteractionComponent = NodePath("Head/Camera3D/InteractionComponent")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1601597710]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.895, 0)
 mesh = SubResource("CapsuleMesh_bfexx")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=656601706]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.895, 0)
 shape = SubResource("CapsuleShape3D_bfexx")
 
-[node name="Head" type="Node3D" parent="."]
+[node name="Head" type="Node3D" parent="." unique_id=625308979]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Head"]
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=602241127]
 fov = 65.0
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D" unique_id=1899765772]
+target_position = Vector3(0, 0, -1.5)
+
+[node name="Marker3D" type="Marker3D" parent="Head/Camera3D" unique_id=2042606697]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+
+[node name="InteractionComponent" type="InteractionComponent" parent="Head/Camera3D" unique_id=1046881075 node_paths=PackedStringArray("Instigator", "RayCast", "Marker")]
+Instigator = NodePath("../../..")
+RayCast = NodePath("../RayCast3D")
+Marker = NodePath("../Marker3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Head" unique_id=525035700]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 input_ray_pickable = false
 
-[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="Head/StaticBody3D"]
+[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="Head/StaticBody3D" unique_id=885520240]
 node_a = NodePath("..")
 linear_limit_x/enabled = false
 linear_limit_y/enabled = false
@@ -40,9 +52,9 @@ angular_limit_x/enabled = false
 angular_limit_y/enabled = false
 angular_limit_z/enabled = false
 
-[node name="StateMachine" type="CharacterStateMachine" parent="." node_paths=PackedStringArray("InitialState")]
+[node name="StateMachine" type="CharacterStateMachine" parent="." unique_id=1365615434 node_paths=PackedStringArray("InitialState")]
 InitialState = NodePath("IdlePlayerState")
 
-[node name="IdlePlayerState" type="IdlePlayerState" parent="StateMachine"]
+[node name="IdlePlayerState" type="IdlePlayerState" parent="StateMachine" unique_id=1376105137]
 
-[node name="WalkingPlayerState" type="WalkingPlayerState" parent="StateMachine"]
+[node name="WalkingPlayerState" type="WalkingPlayerState" parent="StateMachine" unique_id=1977647728]
