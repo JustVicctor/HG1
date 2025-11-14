@@ -1,8 +1,9 @@
 ﻿#include "InteractableStaticBody3D.h"
 
-void InteractableStaticBody3D::StartInteraction(Node3D* instigator, Marker3D* marker)
+Interactable* InteractableStaticBody3D::StartInteraction(Node3D* instigator, Marker3D* marker, Vector3 position)
 {
-	Interactable::StartInteraction(instigator, marker);
+	Interactable::StartInteraction(instigator, marker, position);
+	return this;
 }
 
 void InteractableStaticBody3D::ProcessInteraction(float delta)

@@ -9,7 +9,7 @@ class InteractableStaticBody3D : public StaticBody3D, public Interactable
 	GDCLASS(InteractableStaticBody3D, StaticBody3D)
 
 public:
-	virtual void StartInteraction(Node3D* instigator, Marker3D* marker) override;
+	virtual Interactable* StartInteraction(Node3D* instigator, Marker3D* marker, Vector3 position) override;
 	virtual void ProcessInteraction(float delta) override;
 	virtual void StopInteraction() override;
 	

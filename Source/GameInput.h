@@ -24,6 +24,7 @@ public:
 	bool IsPrimaryPressed() const;
 	bool IsPrimaryReleased() const;
 	bool IsSecondaryPressed() const;
+	bool IsSecondaryReleased() const;
 	bool IsInteractPressed() const;
 
 protected:
@@ -37,6 +38,7 @@ protected:
 	bool m_IsPrimaryPressed = false;
 	bool m_IsPrimaryReleased = false;
 	bool m_IsSecondaryPressed = false;
+	bool m_IsSecondaryReleased = false;
 	bool m_IsInteractPressed = false;
 
 	static void _bind_methods();

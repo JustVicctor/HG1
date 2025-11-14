@@ -14,7 +14,7 @@ class IngredientSpawnerScene : public InteractableStaticBody3D
 public:
 	virtual void _ready() override;
 
-	virtual void StartInteraction(Node3D* instigator, Marker3D* marker) override;
+	virtual Interactable* StartInteraction(Node3D* instigator, Marker3D* marker, Vector3 position) override;
 	virtual void ProcessInteraction(float delta) override;
 	virtual void StopInteraction() override;
 

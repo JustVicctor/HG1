@@ -16,7 +16,13 @@ void InteractionComponent::_process(double delta)
 {
 	if (m_CurrentInteractable)
 	{
-		if (m_GameInput->IsPrimaryReleased())
+		if (m_GameInput->IsSecondaryReleased())
+		{
+			m_CurrentInteractable->AlternativeInteraction(m_Marker);
+			m_CurrentInteractable->StopInteraction();
+			m_CurrentInteractable = nullptr;
+		}
+		else if (m_GameInput->IsPrimaryReleased())
 		{
 			m_CurrentInteractable->StopInteraction();
 			m_CurrentInteractable = nullptr;
@@ -34,10 +40,10 @@ void InteractionComponent::_process(double delta)
 			{
 				Object* collider = m_RayCast->get_collider();
 				if (Interactable* interactable = dynamic_cast<Interactable*>(collider))
-				{
-					m_CurrentInteractable = interactable;
-					m_CurrentInteractable->StartInteraction(m_Instigator, m_Marker);
-				}
+					m_CurrentInteractable = interactable->StartInteraction(
+						m_Instigator,
+						m_Marker,
+						m_RayCast->get_collision_point());
 			}
 		}
 	}
@@ -51,7 +57,7 @@ void InteractionComponent::_bind_methods()
 		Node3D,
 		SetInstigator,
 		GetInstigator);
-	
+
 	HG_BIND_PROPERTY_NODE(
 		InteractionComponent,
 		"RayCast",
