@@ -29,10 +29,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59, 0)
 fov = 65.0
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D" unique_id=1899765772]
-target_position = Vector3(0, 0, -1.5)
+target_position = Vector3(0, 0, -2)
 
 [node name="Marker3D" type="Marker3D" parent="Head/Camera3D" unique_id=2042606697]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="InteractionComponent" type="InteractionComponent" parent="Head/Camera3D" unique_id=1046881075 node_paths=PackedStringArray("Instigator", "RayCast", "Marker")]
 Instigator = NodePath("../../..")

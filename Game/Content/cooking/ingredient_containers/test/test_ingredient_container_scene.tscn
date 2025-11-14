@@ -15,6 +15,7 @@ size = Vector3(0.4, 0.4, 0.4)
 [node name="TestIngredientContainerScene" type="IngredientContainerScene" unique_id=675215434 node_paths=PackedStringArray("Area")]
 Area = NodePath("Area3D")
 Resource = ExtResource("1_8wut7")
+NeedExcludeInstigator = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 collision_layer = 7
 
